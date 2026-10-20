@@ -27,10 +27,10 @@ for (const relativePath of requiredAssets) {
 if (!html.includes('assets/mockups/bundle-buque-apostilas-a4.png') || !html.includes('class="hero-bundle"')) {
   throw new Error('Hero must feature the complete A4 bundle mockup.');
 }
-if (!html.includes('assets/video/atlas-vivo-vsl.mp4') || !html.includes('<video')) {
+if (!html.includes('assets/stream/atlas-vsl.mp4') || !html.includes('<video')) {
   throw new Error('VSL video must be embedded in the VSL section.');
 }
-if (!fs.existsSync(new URL('../dist/assets/video/atlas-vivo-vsl.mp4', import.meta.url))) {
+if (!fs.existsSync(new URL('../dist/assets/stream/atlas-vsl.mp4', import.meta.url))) {
   throw new Error('Missing embedded VSL video asset.');
 }
 const vslSection = html.match(/<section id="vsl"[\s\S]*?<\/section>/)?.[0] ?? '';
@@ -99,10 +99,10 @@ if (!(html.indexOf('id="provas"') < html.indexOf('id="quem-somos"'))) {
   throw new Error('Quem somos must be below social proof.');
 }
 const quemSomosSection = html.match(/<section id="quem-somos"[\s\S]*?<\/section>/)?.[0] ?? '';
-if (!quemSomosSection.includes('assets/video/vsl-quem-somos.mp4') || !quemSomosSection.includes('<video')) {
+if (!quemSomosSection.includes('assets/stream/quem-somos.mp4') || !quemSomosSection.includes('<video')) {
   throw new Error('Quem somos needs its dedicated embedded video.');
 }
-if (!fs.existsSync(new URL('../dist/assets/video/vsl-quem-somos.mp4', import.meta.url))) {
+if (!fs.existsSync(new URL('../dist/assets/stream/quem-somos.mp4', import.meta.url))) {
   throw new Error('Missing Quem somos video asset.');
 }
 const proofSection = html.match(/<section id="provas"[\s\S]*?<\/section>/)?.[0] ?? '';
