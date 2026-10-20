@@ -58,3 +58,12 @@
   .collection-cards p { margin: 2px 0 6px; font-size: 13px; }
   .collection-cards span { justify-self: start; margin: 0; }
 }
+
+.watch-prompt{display:flex;justify-content:center;align-items:center;gap:16px;margin:22px auto 0;color:#c47916;text-align:center}
+.watch-prompt span{font-size:32px;line-height:1;animation:watch-bounce 1.4s ease-in-out infinite}
+.watch-prompt button{cursor:pointer;border:2px solid #b87921;border-radius:999px;background:#f4c34f;color:#07395f;padding:12px 20px;font:700 13px Arial,sans-serif;box-shadow:0 4px 0 #aa6a1d}
+.watch-prompt button:focus-visible{outline:3px solid #0b6243;outline-offset:4px}
+@keyframes watch-bounce{50%{transform:translateY(6px)}}
+@keyframes proof-glide{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 11px))}}
+@media(max-width:800px){@keyframes proof-glide{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 7.5px))}}}
+@media(prefers-reduced-motion:reduce){.watch-prompt span{animation:none}}
