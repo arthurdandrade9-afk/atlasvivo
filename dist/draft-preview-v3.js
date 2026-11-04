@@ -13,6 +13,20 @@
   characterHuntStyles.href = 'character-hunt.css?v=1';
   characterHuntStyles.dataset.characterHuntStyles = 'true';
   document.head.append(characterHuntStyles);
+  const heroRasterStyles = document.createElement('link');
+  heroRasterStyles.rel = 'stylesheet';
+  heroRasterStyles.href = 'hero-raster.css?v=1';
+  heroRasterStyles.dataset.heroRasterStyles = 'true';
+  document.head.append(heroRasterStyles);
+
+  const hero = document.querySelector('#hero');
+  if (hero && !hero.querySelector('.hero-raster')) {
+    const heroRaster = document.createElement('div');
+    heroRaster.className = 'hero-raster';
+    heroRaster.innerHTML = '<img src="assets/mockups/hero-atlas-raster.png" alt="Atlas Vivo da Bíblia: 150 mapas visuais para aulas de catequese" width="1091" height="1474"><a class="hero-raster__video-cta" href="#vsl" aria-label="Assistir ao vídeo de apresentação do Atlas"></a>';
+    hero.append(heroRaster);
+    hero.classList.add('hero--raster');
+  }
 
   const mechanismSection = document.querySelector('#mecanismo');
   if (mechanismSection && !document.querySelector('.character-hunt-explainer')) {
