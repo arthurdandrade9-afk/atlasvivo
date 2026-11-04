@@ -8,6 +8,19 @@
   offerRasterStyles.href = 'offer-raster.css?v=1';
   offerRasterStyles.dataset.offerRasterStyles = 'true';
   document.head.append(offerRasterStyles);
+  const characterHuntStyles = document.createElement('link');
+  characterHuntStyles.rel = 'stylesheet';
+  characterHuntStyles.href = 'character-hunt.css?v=1';
+  characterHuntStyles.dataset.characterHuntStyles = 'true';
+  document.head.append(characterHuntStyles);
+
+  const mechanismSection = document.querySelector('#mecanismo');
+  if (mechanismSection && !document.querySelector('.character-hunt-explainer')) {
+    const characterHunt = document.createElement('section');
+    characterHunt.className = 'character-hunt-explainer';
+    characterHunt.innerHTML = '<em>O GRANDE DIFERENCIAL DO ATLAS</em><h2>A mecânica que transforma cada cena em descoberta.</h2><figure><img src="assets/mecanismo/caca-personagem-biblico.png" alt="Como funciona a Caça ao Personagem Bíblico: observar a cena, encontrar personagens, conectar com a Bíblia e refletir com a turma." loading="lazy" width="1200" height="1500"></figure>';
+    mechanismSection.before(characterHunt);
+  }
 
   const mechanismSteps = [
     ['assets/mecanismo/etapa-01-escolher-livro.png', 'Escolha o livro do dia', 'Escolha o livro que será trabalhado e separe o mapa visual com o aprofundamento correspondente.'],
