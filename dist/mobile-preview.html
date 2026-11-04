@@ -11,20 +11,20 @@
 <body>
   <main class="device" aria-label="Moldura de celular com prévia do Atlas Vivo">
     <div class="device-bar" aria-hidden="true"></div>
-    <iframe id="mobile-site" src="./?mobile-review=19#hero" title="Prévia mobile do Atlas Vivo da Bíblia"></iframe>
+    <iframe id="mobile-site" src="./?mobile-review=20#hero" title="Prévia mobile do Atlas Vivo da Bíblia"></iframe>
     <p class="label">Prévia mobile · 390px</p>
   </main>
 </body>
 <script>
   const mobileSite = document.getElementById('mobile-site');
   const mobileSection = new URLSearchParams(location.search).get('section');
-  if (mobileSection) mobileSite.src = `./?mobile-review=19#${mobileSection}`;
+  if (mobileSection) mobileSite.src = `./?mobile-review=20#${mobileSection}`;
   mobileSite.addEventListener('load', (event) => {
     const doc = event.target.contentDocument;
     if (!doc || doc.getElementById('draft-preview-v3')) return;
     const script = doc.createElement('script');
     script.id = 'draft-preview-v3';
-    script.src = 'draft-preview-v3.js?v=19';
+    script.src = 'draft-preview-v3.js?v=23';
     doc.body.append(script);
   });
 </script>

@@ -11,7 +11,7 @@
 <body>
   <main class="desktop" aria-label="Moldura desktop com prévia do Atlas Vivo">
     <div class="desktop-bar" aria-hidden="true"></div>
-    <iframe id="desktop-site" src="./#inclusos" title="Prévia desktop do Atlas Vivo da Bíblia"></iframe>
+    <iframe id="desktop-site" src="./?desktop-review=22#inclusos" title="Prévia desktop do Atlas Vivo da Bíblia"></iframe>
     <p class="label">Prévia desktop · 1412px</p>
   </main>
 </body>
@@ -21,7 +21,7 @@
     if (!doc || doc.getElementById('draft-preview-v3')) return;
     const script = doc.createElement('script');
     script.id = 'draft-preview-v3';
-    script.src = 'draft-preview-v3.js';
+    script.src = 'draft-preview-v3.js?v=23';
     doc.body.append(script);
   });
 </script>

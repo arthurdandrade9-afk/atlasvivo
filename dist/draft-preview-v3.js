@@ -1,8 +1,31 @@
 (() => {
   const style = document.createElement('link');
   style.rel = 'stylesheet';
-  style.href = 'styles.css?draft=collection-3d-v19';
+  style.href = 'styles.css?draft=collection-3d-v20';
   document.head.append(style);
+  const offerRasterStyles = document.createElement('link');
+  offerRasterStyles.rel = 'stylesheet';
+  offerRasterStyles.href = 'offer-raster.css?v=1';
+  offerRasterStyles.dataset.offerRasterStyles = 'true';
+  document.head.append(offerRasterStyles);
+
+  const mechanismSteps = [
+    ['assets/mecanismo/etapa-01-escolher-livro.png', 'Escolha o livro do dia', 'Escolha o livro que será trabalhado e separe o mapa visual com o aprofundamento correspondente.'],
+    ['assets/mecanismo/etapa-02-preparar-aula.png', 'Prepare o conteúdo da aula', 'Com base no livro escolhido, organize o conteúdo e os pontos que você quer destacar no encontro.'],
+    ['assets/mecanismo/etapa-03-escolher-uso.png', 'Escolha como usar', 'Imprima na papelaria ou apresente no projetor — a opção mais recomendada para envolver toda a turma.'],
+    ['assets/mecanismo/etapa-04-dar-aula.png', 'Dê a aula e desafie a turma', 'Depois, desafie os alunos a encontrar cada personagem bíblico. Ao encontrarem, explique a história dele ali mesmo.']
+  ];
+  document.querySelectorAll('.mechanism-card').forEach((card, index) => {
+    const step = mechanismSteps[index];
+    if (!step) return;
+    const [src, title, description] = step;
+    const image = card.querySelector('img');
+    if (image) { image.src = src; image.alt = title; }
+    const heading = card.querySelector('h3');
+    if (heading) heading.textContent = title;
+    const copy = card.querySelector('p');
+    if (copy) copy.textContent = description;
+  });
 
   const heroTitle = document.querySelector('#hero h1');
   if (heroTitle && !document.querySelector('.hero-low-ticket')) {
@@ -10,6 +33,34 @@
     lowTicketHeadline.className = 'hero-low-ticket';
     lowTicketHeadline.innerHTML = '<div class="hero-low-ticket__number">150 <span>MAPAS VISUAIS</span></div><strong>para aulas de Catequese</strong>';
     heroTitle.before(lowTicketHeadline);
+  }
+
+  const priceAnchor = document.querySelector('.collection-offer .value-anchor');
+  const originalPrice = priceAnchor?.querySelector('strong');
+  const originalLabel = priceAnchor?.querySelector('span:first-child');
+  const originalTotal = priceAnchor?.querySelector('del');
+  if (priceAnchor && originalPrice && originalLabel && originalTotal && !priceAnchor.querySelector('.value-anchor__price')) {
+    originalLabel.classList.add('value-anchor__label');
+    originalTotal.classList.add('value-anchor__total');
+    const price = document.createElement('div');
+    price.className = 'value-anchor__price';
+    price.innerHTML = '<span>por apenas</span><b>R$ 37</b>';
+    originalPrice.replaceWith(price);
+  }
+
+  const collectionOffer = document.querySelector('.collection-offer');
+  const collectionButton = collectionOffer?.querySelector('.btn');
+  if (priceAnchor && collectionOffer && collectionButton && !collectionOffer.querySelector('.offer-raster-anchor')) {
+    const rasterAnchor = document.createElement('div');
+    rasterAnchor.className = 'offer-raster-anchor';
+    const rasterImage = document.createElement('img');
+    rasterImage.src = './assets/mockups/oferta-colecao-raster.png';
+    rasterImage.alt = 'Oferta da coleção completa: 8 itens, acesso vitalício por R$ 37';
+    rasterImage.width = 1040;
+    rasterImage.height = 1517;
+    rasterAnchor.append(rasterImage, collectionButton);
+    priceAnchor.before(rasterAnchor);
+    collectionOffer.classList.add('collection-offer--raster-anchor');
   }
 
   const productImage = document.querySelector('#produto > img');

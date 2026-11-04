@@ -210,7 +210,10 @@ if (!content.includes('02-bonus-30-aberturas.png') || !content.includes('BÔNUS 
 if (!content.includes('offer-urgency')) {
   throw new Error('Collection offer needs an honest purchase-condition callout.');
 }
-if (!content.includes("styles.css?draft=collection-3d-v19")) {
+if (!content.includes('value-anchor__price') || !styles.includes('.value-anchor__price b{white-space:nowrap')) {
+  throw new Error('Collection price anchor must keep the promotional price legible on a single line.');
+}
+if (!content.includes("styles.css?draft=collection-3d-v20")) {
   throw new Error('Local collection preview must request the current draft stylesheet.');
 }
 if (!styles.includes('.value-prices{grid-template-columns:1fr')) {

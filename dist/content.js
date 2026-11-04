@@ -28,10 +28,35 @@ document.addEventListener('DOMContentLoaded', () => {
     clarityTag.src = 'https://www.clarity.ms/tag/z8iv0uc7cl';
     document.head.append(clarityTag);
   }
+  if (!document.querySelector('link[data-offer-raster-styles]')) {
+    const offerRasterStyles = document.createElement('link');
+    offerRasterStyles.rel = 'stylesheet';
+    offerRasterStyles.href = 'offer-raster.css?v=1';
+    offerRasterStyles.dataset.offerRasterStyles = 'true';
+    document.head.append(offerRasterStyles);
+  }
+
+  const mechanismSteps = [
+    ['assets/mecanismo/etapa-01-escolher-livro.png', 'Escolha o livro do dia', 'Escolha o livro que será trabalhado e separe o mapa visual com o aprofundamento correspondente.'],
+    ['assets/mecanismo/etapa-02-preparar-aula.png', 'Prepare o conteúdo da aula', 'Com base no livro escolhido, organize o conteúdo e os pontos que você quer destacar no encontro.'],
+    ['assets/mecanismo/etapa-03-escolher-uso.png', 'Escolha como usar', 'Imprima na papelaria ou apresente no projetor — a opção mais recomendada para envolver toda a turma.'],
+    ['assets/mecanismo/etapa-04-dar-aula.png', 'Dê a aula e desafie a turma', 'Depois, desafie os alunos a encontrar cada personagem bíblico. Ao encontrarem, explique a história dele ali mesmo.']
+  ];
+  document.querySelectorAll('.mechanism-card').forEach((card, index) => {
+    const step = mechanismSteps[index];
+    if (!step) return;
+    const [src, title, description] = step;
+    const image = card.querySelector('img');
+    if (image) { image.src = src; image.alt = title; }
+    const heading = card.querySelector('h3');
+    if (heading) heading.textContent = title;
+    const copy = card.querySelector('p');
+    if (copy) copy.textContent = description;
+  });
 
   const draftStylesheet = document.createElement('link');
   draftStylesheet.rel = 'stylesheet';
-  draftStylesheet.href = 'styles.css?draft=collection-3d-v19';
+  draftStylesheet.href = 'styles.css?draft=collection-3d-v20';
   document.head.append(draftStylesheet);
 
   const heroCta = document.querySelector('#hero .btn[data-checkout="completo"]');
@@ -79,10 +104,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const collectionOffer = document.querySelector('.collection-offer');
   if (collectionOffer) {
+    const priceAnchor = collectionOffer.querySelector('.value-anchor');
+    const originalPrice = priceAnchor?.querySelector('strong');
+    const originalLabel = priceAnchor?.querySelector('span:first-child');
+    const originalTotal = priceAnchor?.querySelector('del');
+    if (priceAnchor && originalPrice && originalLabel && originalTotal && !priceAnchor.querySelector('.value-anchor__price')) {
+      originalLabel.classList.add('value-anchor__label');
+      originalTotal.classList.add('value-anchor__total');
+      const price = document.createElement('div');
+      price.className = 'value-anchor__price';
+      price.innerHTML = '<span>por apenas</span><b>R$ 37</b>';
+      originalPrice.replaceWith(price);
+    }
     const urgency = document.createElement('p');
     urgency.className = 'offer-urgency';
     urgency.textContent = 'Escolha inteligente: por apenas R$ 10 a mais, você libera os 7 bônus da coleção.';
     collectionOffer.querySelector('.value-anchor')?.before(urgency);
+
+    const collectionButton = collectionOffer.querySelector('.btn');
+    if (priceAnchor && collectionButton && !collectionOffer.querySelector('.offer-raster-anchor')) {
+      const rasterAnchor = document.createElement('div');
+      rasterAnchor.className = 'offer-raster-anchor';
+      const rasterImage = document.createElement('img');
+      rasterImage.src = './assets/mockups/oferta-colecao-raster.png';
+      rasterImage.alt = 'Oferta da coleção completa: 8 itens, acesso vitalício por R$ 37';
+      rasterImage.width = 1040;
+      rasterImage.height = 1517;
+      rasterAnchor.append(rasterImage, collectionButton);
+      urgency.before(rasterAnchor);
+      collectionOffer.classList.add('collection-offer--raster-anchor');
+    }
   }
 
   const soloOffer = document.querySelector('.solo-offer');
