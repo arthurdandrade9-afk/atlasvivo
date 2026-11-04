@@ -136,6 +136,12 @@ if (!fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8').inc
 if (!styles.includes('animation:proof-glide 45s linear infinite')) {
   throw new Error('Social proof must use the faster continuous animation.');
 }
+if (!styles.includes('@media(min-width:801px){#hero.hero')) {
+  throw new Error('Hero needs a desktop-only composition rule.');
+}
+if (!styles.includes('.hero-bundle{width:min(780px,48vw)')) {
+  throw new Error('Desktop hero mockup must occupy substantially more space.');
+}
 const offerSection = html.match(/<section id="oferta"[\s\S]*?<\/section>/)?.[0] ?? '';
 if (!offerSection.includes('ACESSO VITALÍCIO')) {
   throw new Error('The offer anchor must make lifetime access explicit.');

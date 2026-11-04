@@ -72,3 +72,6 @@
 /* Faster continuous carousels requested for demonstrations and social proof. */
 .demo-track{animation:glide 35s linear infinite}
 .proof-track{animation:proof-glide 45s linear infinite}
+
+/* Desktop hero: keep the offer copy readable while letting the physical product lead. */
+@media(min-width:801px){#hero.hero{min-height:660px;padding:44px clamp(5%,7vw,10%);display:flex;align-items:center}.hero .paper{width:min(600px,43vw);padding:36px 38px}.hero h1{font-size:clamp(2.9rem,4.35vw,5rem);line-height:.94}.hero-bundle{width:min(780px,48vw);right:4%;top:50%;max-height:620px;object-fit:contain;transform:translateY(-50%) rotate(-2deg)}}
