@@ -113,10 +113,27 @@ if (!proofSection.includes('class="proof-track loop-track" data-loop')) {
 }
 
 const content = fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8');
-for (const text of ['R$ 17', 'R$ 27', '7 dias', '#checkout-principal', '#checkout-completo']) {
+for (const text of ['R$ 27', 'R$ 37', '7 dias', 'ACESSO VITALÍCIO']) {
   if (!html.includes(text) && !content.includes(text)) throw new Error(`Missing commercial value: ${text}`);
 }
+if (html.includes('R$ 17')) throw new Error('The retired R$ 17 price must not remain on the page.');
+if (!content.includes("principal: 'https://pay.cakto.com.br/wbvmvj4'")) {
+  throw new Error('The Atlas base CTA must use its Cakto checkout.');
+}
+if (!content.includes("completo: 'https://pay.cakto.com.br/3ch2keu_1209682'")) {
+  throw new Error('The Atlas + bonus CTA must use its Cakto checkout.');
+}
+if (!html.includes('<link rel="preconnect" href="https://pay.cakto.com.br">')) {
+  throw new Error('The page must preconnect to the checkout host.');
+}
+const heroSection = html.match(/<section id="hero"[\s\S]*?<\/section>/)?.[0] ?? '';
+if (!heroSection.includes('ACESSO VITALÍCIO')) {
+  throw new Error('The hero must make lifetime access explicit.');
+}
 const offerSection = html.match(/<section id="oferta"[\s\S]*?<\/section>/)?.[0] ?? '';
+if (!offerSection.includes('ACESSO VITALÍCIO')) {
+  throw new Error('The offer anchor must make lifetime access explicit.');
+}
 for (const text of ['151 páginas', 'R$ 597', '8 materiais', 'Atlas Vivo da Bíblia — 151 páginas']) {
   if (!offerSection.includes(text)) throw new Error(`Missing collection value detail: ${text}`);
 }

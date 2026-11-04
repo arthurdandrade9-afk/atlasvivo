@@ -1,11 +1,11 @@
 window.ATLAS_CONTENT = {
   checkout: {
-    principal: '#checkout-principal',
-    completo: '#checkout-completo'
+    principal: 'https://pay.cakto.com.br/wbvmvj4',
+    completo: 'https://pay.cakto.com.br/3ch2keu_1209682'
   },
   pricing: {
-    principal: 'R$ 17',
-    completo: 'R$ 27'
+    principal: 'R$ 27',
+    completo: 'R$ 37'
   },
   guarantee: '7 dias',
   testimonials: [],
