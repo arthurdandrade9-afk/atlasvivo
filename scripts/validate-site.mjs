@@ -105,6 +105,9 @@ if (!quemSomosSection.includes('assets/stream/quem-somos.mp4') || !quemSomosSect
 if (!fs.existsSync(new URL('../dist/assets/stream/quem-somos.mp4', import.meta.url))) {
   throw new Error('Missing Quem somos video asset.');
 }
+if (!styles.includes('#quem-somos .about-copy>span:before') || !styles.includes('#quem-somos .about-video{')) {
+  throw new Error('Quem somos needs the editorial emblem, CTA and framed-video treatment.');
+}
 const proofSection = html.match(/<section id="provas"[\s\S]*?<\/section>/)?.[0] ?? '';
 const proofCount = (proofSection.match(/assets\/provas\/prova-social-\d+\.(?:jfif|png)/g) ?? []).length;
 if (proofCount !== 8) throw new Error(`Expected 8 real social proof images, found ${proofCount}.`);
@@ -113,6 +116,10 @@ if (!proofSection.includes('class="proof-track loop-track" data-loop')) {
 }
 
 const content = fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8');
+
+if (!content.includes('https://www.clarity.ms/tag/z8iv0uc7cl')) {
+  throw new Error('The Atlas Clarity project tag must be present for heatmaps and session recordings.');
+}
 for (const text of ['R$ 27', 'R$ 37', '7 dias', 'ACESSO VITALÍCIO']) {
   if (!html.includes(text) && !content.includes(text)) throw new Error(`Missing commercial value: ${text}`);
 }
@@ -132,6 +139,9 @@ if (!heroSection.includes('ACESSO VITALÍCIO')) {
 }
 if (!fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8').includes("heroCta.href = '#oferta'")) {
   throw new Error('The hero CTA must lead to the offer anchor.');
+}
+if (!content.includes('hero-low-ticket') || !styles.includes('.hero-low-ticket__number{')) {
+  throw new Error('Hero needs the concrete low-ticket 150-map headline treatment.');
 }
 if (!styles.includes('animation:proof-glide 45s linear infinite')) {
   throw new Error('Social proof must use the faster continuous animation.');
@@ -157,6 +167,51 @@ if (!soloOffer.includes('151 páginas')) {
 }
 if (!styles.includes('.value-anchor') || !styles.includes('.offer-check')) {
   throw new Error('Offer needs green value-anchor and checked-deliverable styling.');
+}
+if (!styles.includes('.offer-cover') || !styles.includes('.bonus-number')) {
+  throw new Error('Collection offer needs visual bonus covers and numbered labels.');
+}
+if (!styles.includes('#inclusos .collection-cards{display:grid;grid-template-columns:1fr;max-width:900px') || !styles.includes('#inclusos .collection-cards article{display:grid;grid-template-columns:minmax(210px,280px) minmax(0,1fr)')) {
+  throw new Error('Collection showcase needs the large editorial product-card route treatment.');
+}
+if (!styles.includes('.collection-total strong{display:inline')) {
+  throw new Error('Collection value heading must not inherit the large price styling.');
+}
+if (!styles.includes('.value-anchor:before') || !styles.includes('.offer-check>span{')) {
+  throw new Error('Collection value anchor needs tangible three-dimensional markers.');
+}
+if (!styles.includes('.offer-cover-wrap') || !content.includes("mockup.className = 'offer-cover-wrap'")) {
+  throw new Error('Each collection cover needs an individual tangible mockup treatment.');
+}
+if (!styles.includes('.collection-cards img{height:142px') || !styles.includes('box-shadow:0 5px 12px #57371544')) {
+  throw new Error('Collection covers need detailed visual polish without changing the card layout.');
+}
+if (!content.includes("product-showcase") || !content.includes('03-bonus-guia-lider-narradora.png') || !content.includes("'Atlas Vivo da Bíblia', 'main'")) {
+  throw new Error('Product section needs a distinct commercial collection mockup.');
+}
+if (!styles.includes('#quem-somos .about-video{width:min(100%,390px);aspect-ratio:9/16}') || !styles.includes('.product-book--main')) {
+  throw new Error('About video must retain its original player format and the second mockup needs a central deliverable.');
+}
+if (!content.includes("'A Bíblia Inteira', 'bonus-7'") || !content.includes('solo-inclusions') || !styles.includes('.solo-inclusions{')) {
+  throw new Error('Second mockup needs all bonus covers and the Atlas-only offer needs clear included items.');
+}
+if (!styles.includes('#produto.product{min-height:760px') || !styles.includes('#produto .blue h2{font-size:clamp(3rem,5.5vw,5.4rem)')) {
+  throw new Error('Product hero needs the campaign-scale composition from the reference.');
+}
+if (!styles.includes('.product-showcase:before{content:""') || !styles.includes('.product-book--bonus-7{z-index:4;left:calc(50% - 47px);top:4px')) {
+  throw new Error('Product mockups need the reference-style pedestal and crown arrangement.');
+}
+if (!styles.includes('.collection-offer .offer-list{display:grid') || !styles.includes('.collection-offer .offer-check:before') || !styles.includes('.collection-offer .value-anchor{')) {
+  throw new Error('Collection checkout needs visible premium bonus cards and a commercial price anchor.');
+}
+if (!content.includes('02-bonus-30-aberturas.png') || !content.includes('BÔNUS 1')) {
+  throw new Error('Collection offer needs the first bonus cover and label.');
+}
+if (!content.includes('offer-urgency')) {
+  throw new Error('Collection offer needs an honest purchase-condition callout.');
+}
+if (!content.includes("styles.css?draft=collection-3d-v19")) {
+  throw new Error('Local collection preview must request the current draft stylesheet.');
 }
 if (!styles.includes('.value-prices{grid-template-columns:1fr')) {
   throw new Error('Both offer cards must use the same full-width presentation.');
