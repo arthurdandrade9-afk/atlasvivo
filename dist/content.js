@@ -15,3 +15,11 @@ window.ATLAS_CONTENT = {
     body: ''
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const heroCta = document.querySelector('#hero .btn[data-checkout="completo"]');
+  if (heroCta) {
+    heroCta.href = '#oferta';
+    heroCta.removeAttribute('data-checkout');
+  }
+});

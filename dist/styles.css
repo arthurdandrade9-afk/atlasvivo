@@ -68,3 +68,7 @@
 @keyframes proof-glide{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 11px))}}
 @media(max-width:800px){@keyframes proof-glide{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 7.5px))}}}
 @media(prefers-reduced-motion:reduce){.watch-prompt span{animation:none}}
+
+/* Faster continuous carousels requested for demonstrations and social proof. */
+.demo-track{animation:glide 35s linear infinite}
+.proof-track{animation:proof-glide 45s linear infinite}

@@ -65,7 +65,7 @@ const styles = fs.readFileSync(new URL('../dist/styles.css', import.meta.url), '
 if (!html.includes('href="styles.css?v=')) {
   throw new Error('Stylesheet needs a versioned URL so the current offer styling is always loaded.');
 }
-if (!styles.includes('animation:glide 55s linear infinite')) {
+if (!styles.includes('animation:glide 35s linear infinite')) {
   throw new Error('Demonstratives must keep a visible continuous animation.');
 }
 if (styles.includes('@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.demo-track{animation:none')) {
@@ -129,6 +129,12 @@ if (!html.includes('<link rel="preconnect" href="https://pay.cakto.com.br">')) {
 const heroSection = html.match(/<section id="hero"[\s\S]*?<\/section>/)?.[0] ?? '';
 if (!heroSection.includes('ACESSO VITALÍCIO')) {
   throw new Error('The hero must make lifetime access explicit.');
+}
+if (!fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8').includes("heroCta.href = '#oferta'")) {
+  throw new Error('The hero CTA must lead to the offer anchor.');
+}
+if (!styles.includes('animation:proof-glide 45s linear infinite')) {
+  throw new Error('Social proof must use the faster continuous animation.');
 }
 const offerSection = html.match(/<section id="oferta"[\s\S]*?<\/section>/)?.[0] ?? '';
 if (!offerSection.includes('ACESSO VITALÍCIO')) {
