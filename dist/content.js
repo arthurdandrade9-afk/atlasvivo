@@ -32,6 +32,24 @@ document.querySelectorAll('img').forEach((image) => {
   }
 });
 
+// Replace the legacy hero before the first paint: it must not stay hidden underneath
+// the campaign artwork or compete for memory/network resources.
+const initialHero = document.querySelector('#hero');
+if (initialHero && !initialHero.querySelector('.hero-raster')) {
+  const immediateHeroStyles = document.createElement('link');
+  immediateHeroStyles.rel = 'stylesheet';
+  immediateHeroStyles.href = 'hero-raster.css?v=2';
+  immediateHeroStyles.dataset.heroRasterStyles = 'true';
+  document.head.append(immediateHeroStyles);
+  initialHero.querySelector('.paper')?.remove();
+  initialHero.querySelector('.hero-bundle')?.remove();
+  const heroRaster = document.createElement('div');
+  heroRaster.className = 'hero-raster';
+  heroRaster.innerHTML = '<img src="assets/mockups/hero-atlas-raster.webp" alt="Atlas Vivo da Bíblia: 150 mapas visuais para aulas de catequese" width="1091" height="1442" fetchpriority="high"><a class="hero-raster__video-cta" href="#vsl" aria-label="Assistir ao vídeo de apresentação do Atlas"></a>';
+  initialHero.append(heroRaster);
+  initialHero.classList.add('hero--raster');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Microsoft Clarity — project "atlas". The tag is async and does not block the landing page.
   if (!document.querySelector('script[data-clarity-project="z8iv0uc7cl"]')) {

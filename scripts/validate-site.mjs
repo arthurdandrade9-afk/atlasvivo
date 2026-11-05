@@ -217,6 +217,10 @@ if (!content.includes('value-anchor__price') || !styles.includes('.value-anchor_
 if (!content.includes('hero-atlas-raster.webp') || !content.includes("image.loading = 'lazy'")) {
   throw new Error('Hero delivery and below-the-fold image loading safeguards must remain enabled.');
 }
+
+if (!content.includes("initialHero.querySelector('.paper')?.remove()") || !content.includes("initialHero.querySelector('.hero-bundle')?.remove()")) {
+  throw new Error('The hidden legacy hero must be removed before the campaign hero is rendered.');
+}
 if (!content.includes("styles.css?draft=collection-3d-v20")) {
   throw new Error('Local collection preview must request the current draft stylesheet.');
 }
