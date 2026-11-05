@@ -2,6 +2,7 @@ import { readFileSync, statSync } from 'node:fs';
 import assert from 'node:assert/strict';
 
 const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
+assert.match(html, /<script src="app\.js\?v=[^"]+">/, 'VSL behavior script must be versioned so returning visitors receive new controls');
 const vsl = html.match(/<section id="vsl"[\s\S]*?<\/section>/)?.[0] ?? '';
 assert.match(vsl, /poster="assets\/stream\/atlas-vsl-poster\.jpg"/, 'VSL should display an actual video frame before play');
 assert.match(vsl, /assets\/stream\/atlas-vsl\.mp4/, 'VSL should use the optimized video');
