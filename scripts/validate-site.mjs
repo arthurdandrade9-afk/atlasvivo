@@ -24,8 +24,15 @@ for (const relativePath of requiredAssets) {
   if (!fs.existsSync(absolutePath)) throw new Error(`Missing asset: ${relativePath}`);
 }
 
-if (!html.includes('assets/mockups/bundle-buque-apostilas-a4.png') || !html.includes('class="hero-bundle"')) {
-  throw new Error('Hero must feature the complete A4 bundle mockup.');
+if (!html.includes('<link rel="preload" as="image" href="assets/mockups/hero-atlas-raster.webp"')) {
+  throw new Error('The campaign hero must be preloaded from the initial document.');
+}
+const initialHeroSection = html.match(/<section id="hero"[\s\S]*?<\/section>/)?.[0] ?? '';
+if (!initialHeroSection.includes('class="hero-raster"') || !initialHeroSection.includes('hero-atlas-raster.webp')) {
+  throw new Error('The initial document must render the campaign hero directly.');
+}
+if (initialHeroSection.includes('class="hero-bundle"') || initialHeroSection.includes('<div class="paper">')) {
+  throw new Error('The initial document must not retain the legacy hero assets.');
 }
 if (!html.includes('assets/stream/atlas-vsl.mp4') || !html.includes('<video')) {
   throw new Error('VSL video must be embedded in the VSL section.');
@@ -133,9 +140,9 @@ if (!content.includes("completo: 'https://pay.cakto.com.br/3ch2keu_1209682'")) {
 if (!html.includes('<link rel="preconnect" href="https://pay.cakto.com.br">')) {
   throw new Error('The page must preconnect to the checkout host.');
 }
-const heroSection = html.match(/<section id="hero"[\s\S]*?<\/section>/)?.[0] ?? '';
-if (!heroSection.includes('ACESSO VITALÍCIO')) {
-  throw new Error('The hero must make lifetime access explicit.');
+const heroSection = initialHeroSection;
+if (!heroSection.includes('acesso vitalício')) {
+  throw new Error('The hero description must make lifetime access explicit.');
 }
 if (!fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8').includes("heroCta.href = '#oferta'")) {
   throw new Error('The hero CTA must lead to the offer anchor.');
@@ -218,8 +225,8 @@ if (!content.includes('hero-atlas-raster.webp') || !content.includes("image.load
   throw new Error('Hero delivery and below-the-fold image loading safeguards must remain enabled.');
 }
 
-if (!content.includes("initialHero.querySelector('.paper')?.remove()") || !content.includes("initialHero.querySelector('.hero-bundle')?.remove()")) {
-  throw new Error('The hidden legacy hero must be removed before the campaign hero is rendered.');
+if (!content.includes("!image.matches('#hero .hero-raster img')")) {
+  throw new Error('The campaign hero must remain eager while other images are deferred.');
 }
 if (!content.includes("rasterImage.loading = 'lazy'")) {
   throw new Error('The below-the-fold collection offer art must be lazy-loaded.');

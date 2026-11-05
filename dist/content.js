@@ -24,10 +24,10 @@ heroPreload.fetchPriority = 'high';
 document.head.append(heroPreload);
 document.querySelectorAll('img').forEach((image) => {
   image.decoding = 'async';
-  if (image.closest('#hero')) {
+  if (image.closest('#hero') && !image.matches('#hero .hero-raster img')) {
     image.loading = 'lazy';
     image.fetchPriority = 'low';
-  } else {
+  } else if (!image.matches('#hero .hero-raster img')) {
     image.loading = 'lazy';
   }
 });
