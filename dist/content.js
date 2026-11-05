@@ -195,6 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       rasterImage.alt = 'Oferta da coleção completa: 8 itens, acesso vitalício por R$ 37';
       rasterImage.width = 1040;
       rasterImage.height = 1517;
+      rasterImage.loading = 'lazy';
+      rasterImage.decoding = 'async';
       rasterAnchor.append(rasterImage, collectionButton);
       urgency.before(rasterAnchor);
       collectionOffer.classList.add('collection-offer--raster-anchor');
@@ -205,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (soloOffer && !soloOffer.querySelector('.solo-inclusions')) {
     const inclusions = document.createElement('div');
     inclusions.className = 'solo-inclusions';
-    inclusions.innerHTML = '<img src="assets/capas/01-atlas-vivo-da-biblia.png" alt="Capa do Atlas Vivo da Bíblia"><div><b>INCLUSO NO ATLAS</b><span>✓ 151 páginas visuais pelos 73 livros</span><span>✓ Mapas, cenas, cidades e personagens</span><span>✓ Perguntas para conduzir a descoberta</span></div>';
+    inclusions.innerHTML = '<img src="assets/capas/01-atlas-vivo-da-biblia.png" alt="Capa do Atlas Vivo da Bíblia" loading="lazy" decoding="async"><div><b>INCLUSO NO ATLAS</b><span>✓ 151 páginas visuais pelos 73 livros</span><span>✓ Mapas, cenas, cidades e personagens</span><span>✓ Perguntas para conduzir a descoberta</span></div>';
     soloOffer.querySelector('.btn')?.before(inclusions);
   }
 
@@ -226,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ['assets/capas/07-order-bump-primeiros-fundamentos.png', 'Primeiros Fundamentos da Fé', 'bonus-6'],
       ['assets/capas/08-order-bump-biblia-inteira.png', 'A Bíblia Inteira', 'bonus-7']
     ];
-    showcase.innerHTML = featuredMaterials.map(([src, alt, role]) => `<img class="product-book product-book--${role}" src="${src}" alt="${alt}">`).join('');
+    showcase.innerHTML = featuredMaterials.map(([src, alt, role]) => `<img class="product-book product-book--${role}" src="${src}" alt="${alt}" loading="lazy" decoding="async">`).join('');
     productImage.before(showcase);
   }
 });

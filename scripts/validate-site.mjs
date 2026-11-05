@@ -221,6 +221,15 @@ if (!content.includes('hero-atlas-raster.webp') || !content.includes("image.load
 if (!content.includes("initialHero.querySelector('.paper')?.remove()") || !content.includes("initialHero.querySelector('.hero-bundle')?.remove()")) {
   throw new Error('The hidden legacy hero must be removed before the campaign hero is rendered.');
 }
+if (!content.includes("rasterImage.loading = 'lazy'")) {
+  throw new Error('The below-the-fold collection offer art must be lazy-loaded.');
+}
+if (!content.includes("inclusions.innerHTML = '<img src=\"assets/capas/01-atlas-vivo-da-biblia.png\" alt=\"Capa do Atlas Vivo da Bíblia\" loading=\"lazy\"")) {
+  throw new Error('The below-the-fold Atlas inclusion cover must be lazy-loaded.');
+}
+if (!content.includes('class=\"product-book product-book--${role}\" src=\"${src}\" alt=\"${alt}\" loading=\"lazy\"')) {
+  throw new Error('The below-the-fold product collection covers must be lazy-loaded.');
+}
 if (!content.includes("styles.css?draft=collection-3d-v20")) {
   throw new Error('Local collection preview must request the current draft stylesheet.');
 }
