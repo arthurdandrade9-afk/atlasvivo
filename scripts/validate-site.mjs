@@ -24,6 +24,15 @@ for (const relativePath of requiredAssets) {
   if (!fs.existsSync(absolutePath)) throw new Error(`Missing asset: ${relativePath}`);
 }
 
+for (let index = 1; index <= 10; index += 1) {
+  const number = String(index).padStart(3, '0');
+  const jpeg = new URL(`../dist/assets/atlas/atlas-${number}.jpg`, import.meta.url);
+  const webp = new URL(`../dist/assets/atlas/atlas-${number}.webp`, import.meta.url);
+  if (fs.statSync(webp).size >= fs.statSync(jpeg).size) {
+    throw new Error(`Atlas demonstrative ${number} must be smaller than its JPEG source.`);
+  }
+}
+
 if (!html.includes('<link rel="preload" as="image" href="assets/mockups/hero-atlas-raster.webp"')) {
   throw new Error('The campaign hero must be preloaded from the initial document.');
 }
