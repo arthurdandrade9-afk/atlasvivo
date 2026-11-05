@@ -61,6 +61,7 @@
 }
 
 .watch-prompt{display:flex;justify-content:center;align-items:center;gap:16px;margin:22px auto 0;color:#c47916;text-align:center}
+.video{position:relative}.video-sound-prompt{position:absolute;left:50%;bottom:18px;z-index:2;transform:translateX(-50%);cursor:pointer;border:2px solid #ffe69a;border-radius:999px;background:linear-gradient(135deg,#0b7044,#06472d);box-shadow:0 5px 0 #04321f,0 10px 20px #001d1288;color:#fff9de;padding:13px 18px;font:800 13px Arial,sans-serif;letter-spacing:.04em;white-space:nowrap}.video-sound-prompt:hover{transform:translateX(-50%) translateY(2px);box-shadow:0 3px 0 #04321f,0 7px 15px #001d1288}.video-sound-prompt[hidden]{display:none}
 .watch-prompt span{font-size:32px;line-height:1;animation:watch-bounce 1.4s ease-in-out infinite}
 .watch-prompt button{cursor:pointer;border:2px solid #b87921;border-radius:999px;background:#f4c34f;color:#07395f;padding:12px 20px;font:700 13px Arial,sans-serif;box-shadow:0 4px 0 #aa6a1d}
 .watch-prompt button:focus-visible{outline:3px solid #0b6243;outline-offset:4px}
