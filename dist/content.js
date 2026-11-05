@@ -97,15 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mechanismSection && !document.querySelector('.character-hunt-explainer')) {
     const characterHunt = document.createElement('section');
     characterHunt.className = 'character-hunt-explainer';
-    characterHunt.innerHTML = '<em>O GRANDE DIFERENCIAL DO ATLAS</em><h2>A mecânica que transforma cada cena em descoberta.</h2><figure><img src="assets/mecanismo/caca-personagem-biblico.png" alt="Como funciona a Caça ao Personagem Bíblico: observar a cena, encontrar personagens, conectar com a Bíblia e refletir com a turma." loading="lazy" width="1200" height="1500"></figure>';
+    characterHunt.innerHTML = '<em>O GRANDE DIFERENCIAL DO ATLAS</em><h2>A mecânica que transforma cada cena em descoberta.</h2><figure><img src="assets/mecanismo/caca-personagem-biblico.webp" alt="Como funciona a Caça ao Personagem Bíblico: observar a cena, encontrar personagens, conectar com a Bíblia e refletir com a turma." loading="lazy" width="1200" height="1500"></figure>';
     mechanismSection.before(characterHunt);
   }
 
   const mechanismSteps = [
-    ['assets/mecanismo/etapa-01-escolher-livro.png', 'Escolha o livro do dia', 'Escolha o livro que será trabalhado e separe o mapa visual com o aprofundamento correspondente.'],
-    ['assets/mecanismo/etapa-02-preparar-aula.png', 'Prepare o conteúdo da aula', 'Com base no livro escolhido, organize o conteúdo e os pontos que você quer destacar no encontro.'],
-    ['assets/mecanismo/etapa-03-escolher-uso.png', 'Escolha como usar', 'Imprima na papelaria ou apresente no projetor — a opção mais recomendada para envolver toda a turma.'],
-    ['assets/mecanismo/etapa-04-dar-aula.png', 'Dê a aula e desafie a turma', 'Depois, desafie os alunos a encontrar cada personagem bíblico. Ao encontrarem, explique a história dele ali mesmo.']
+    ['assets/mecanismo/etapa-01-escolher-livro.webp', 'Escolha o livro do dia', 'Escolha o livro que será trabalhado e separe o mapa visual com o aprofundamento correspondente.'],
+    ['assets/mecanismo/etapa-02-preparar-aula.webp', 'Prepare o conteúdo da aula', 'Com base no livro escolhido, organize o conteúdo e os pontos que você quer destacar no encontro.'],
+    ['assets/mecanismo/etapa-03-escolher-uso.webp', 'Escolha como usar', 'Imprima na papelaria ou apresente no projetor — a opção mais recomendada para envolver toda a turma.'],
+    ['assets/mecanismo/etapa-04-dar-aula.webp', 'Dê a aula e desafie a turma', 'Depois, desafie os alunos a encontrar cada personagem bíblico. Ao encontrarem, explique a história dele ali mesmo.']
   ];
   document.querySelectorAll('.mechanism-card').forEach((card, index) => {
     const step = mechanismSteps[index];
@@ -139,14 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const collectionItems = [
-    ['MATERIAL PRINCIPAL', 'assets/capas/01-atlas-vivo-da-biblia.png'],
-    ['BÔNUS 1', 'assets/capas/02-bonus-30-aberturas.png'],
-    ['BÔNUS 2', 'assets/capas/03-bonus-guia-lider-narradora.png'],
-    ['BÔNUS 3', 'assets/capas/04-bonus-cartoes-o-que-voce-viu.png'],
-    ['BÔNUS 4', 'assets/capas/05-bonus-ponte-da-semana.png'],
-    ['BÔNUS 5', 'assets/capas/06-bonus-aula-viva-15-minutos.png'],
-    ['BÔNUS 6', 'assets/capas/07-order-bump-primeiros-fundamentos.png'],
-    ['BÔNUS 7', 'assets/capas/08-order-bump-biblia-inteira.png']
+    ['MATERIAL PRINCIPAL', 'assets/capas/01-atlas-vivo-da-biblia.webp'],
+    ['BÔNUS 1', 'assets/capas/02-bonus-30-aberturas.webp'],
+    ['BÔNUS 2', 'assets/capas/03-bonus-guia-lider-narradora.webp'],
+    ['BÔNUS 3', 'assets/capas/04-bonus-cartoes-o-que-voce-viu.webp'],
+    ['BÔNUS 4', 'assets/capas/05-bonus-ponte-da-semana.webp'],
+    ['BÔNUS 5', 'assets/capas/06-bonus-aula-viva-15-minutos.webp'],
+    ['BÔNUS 6', 'assets/capas/07-order-bump-primeiros-fundamentos.webp'],
+    ['BÔNUS 7', 'assets/capas/08-order-bump-biblia-inteira.webp']
   ];
   document.querySelectorAll('.collection-offer .offer-check').forEach((item, index) => {
     const [label, cover] = collectionItems[index] ?? [];
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rasterAnchor = document.createElement('div');
       rasterAnchor.className = 'offer-raster-anchor';
       const rasterImage = document.createElement('img');
-      rasterImage.src = './assets/mockups/oferta-colecao-raster.png';
+      rasterImage.src = './assets/mockups/oferta-colecao-raster.webp';
       rasterImage.alt = 'Oferta da coleção completa: 8 itens, acesso vitalício por R$ 37';
       rasterImage.width = 1040;
       rasterImage.height = 1517;
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (soloOffer && !soloOffer.querySelector('.solo-inclusions')) {
     const inclusions = document.createElement('div');
     inclusions.className = 'solo-inclusions';
-    inclusions.innerHTML = '<img src="assets/capas/01-atlas-vivo-da-biblia.png" alt="Capa do Atlas Vivo da Bíblia" loading="lazy" decoding="async"><div><b>INCLUSO NO ATLAS</b><span>✓ 151 páginas visuais pelos 73 livros</span><span>✓ Mapas, cenas, cidades e personagens</span><span>✓ Perguntas para conduzir a descoberta</span></div>';
+    inclusions.innerHTML = '<img src="assets/capas/01-atlas-vivo-da-biblia.webp" alt="Capa do Atlas Vivo da Bíblia" loading="lazy" decoding="async"><div><b>INCLUSO NO ATLAS</b><span>✓ 151 páginas visuais pelos 73 livros</span><span>✓ Mapas, cenas, cidades e personagens</span><span>✓ Perguntas para conduzir a descoberta</span></div>';
     soloOffer.querySelector('.btn')?.before(inclusions);
   }
 
@@ -219,14 +219,14 @@ document.addEventListener('DOMContentLoaded', () => {
     showcase.className = 'product-showcase';
     showcase.setAttribute('aria-label', 'Coleção Atlas Vivo em materiais digitais');
     const featuredMaterials = [
-      ['assets/capas/01-atlas-vivo-da-biblia.png', 'Atlas Vivo da Bíblia', 'main'],
-      ['assets/capas/02-bonus-30-aberturas.png', '30 Aberturas', 'bonus-1'],
-      ['assets/capas/03-bonus-guia-lider-narradora.png', 'Guia Líder-Narradora', 'bonus-2'],
-      ['assets/capas/04-bonus-cartoes-o-que-voce-viu.png', 'Cartões O Que Você Viu?', 'bonus-3'],
-      ['assets/capas/05-bonus-ponte-da-semana.png', 'A Ponte da Semana', 'bonus-4'],
-      ['assets/capas/06-bonus-aula-viva-15-minutos.png', 'Aula Viva em 15 Minutos', 'bonus-5'],
-      ['assets/capas/07-order-bump-primeiros-fundamentos.png', 'Primeiros Fundamentos da Fé', 'bonus-6'],
-      ['assets/capas/08-order-bump-biblia-inteira.png', 'A Bíblia Inteira', 'bonus-7']
+      ['assets/capas/01-atlas-vivo-da-biblia.webp', 'Atlas Vivo da Bíblia', 'main'],
+      ['assets/capas/02-bonus-30-aberturas.webp', '30 Aberturas', 'bonus-1'],
+      ['assets/capas/03-bonus-guia-lider-narradora.webp', 'Guia Líder-Narradora', 'bonus-2'],
+      ['assets/capas/04-bonus-cartoes-o-que-voce-viu.webp', 'Cartões O Que Você Viu?', 'bonus-3'],
+      ['assets/capas/05-bonus-ponte-da-semana.webp', 'A Ponte da Semana', 'bonus-4'],
+      ['assets/capas/06-bonus-aula-viva-15-minutos.webp', 'Aula Viva em 15 Minutos', 'bonus-5'],
+      ['assets/capas/07-order-bump-primeiros-fundamentos.webp', 'Primeiros Fundamentos da Fé', 'bonus-6'],
+      ['assets/capas/08-order-bump-biblia-inteira.webp', 'A Bíblia Inteira', 'bonus-7']
     ];
     showcase.innerHTML = featuredMaterials.map(([src, alt, role]) => `<img class="product-book product-book--${role}" src="${src}" alt="${alt}" loading="lazy" decoding="async">`).join('');
     productImage.before(showcase);

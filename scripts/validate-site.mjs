@@ -12,11 +12,11 @@ const missing = requiredIds.filter((id) => !html.includes(`id="${id}"`));
 if (missing.length) throw new Error(`Missing sections: ${missing.join(', ')}`);
 
 const requiredAssets = [
-  'assets/atlas/atlas-001.jpg',
-  'assets/atlas/atlas-008.jpg',
-  'assets/capas/01-atlas-vivo-da-biblia.png',
-  'assets/capas/08-order-bump-biblia-inteira.png',
-  'assets/mockups/bundle-buque-apostilas-a4.png'
+  'assets/atlas/atlas-001.webp',
+  'assets/atlas/atlas-008.webp',
+  'assets/capas/01-atlas-vivo-da-biblia.webp',
+  'assets/capas/08-order-bump-biblia-inteira.webp',
+  'assets/mockups/bundle-buque-apostilas-a4.webp'
 ];
 
 for (const relativePath of requiredAssets) {
@@ -58,7 +58,7 @@ if (!html.includes('class="demo-track loop-track" data-loop')) {
   throw new Error('Demonstratives must use the shared continuous loop track.');
 }
 const demoSection = html.match(/<section id="demonstrativos"[\s\S]*?<\/section>/)?.[0] ?? '';
-const atlasDemoCount = (demoSection.match(/assets\/atlas\/atlas-\d{3}\.jpg/g) ?? []).length;
+const atlasDemoCount = (demoSection.match(/assets\/atlas\/atlas-\d{3}\.webp/g) ?? []).length;
 if (atlasDemoCount !== 10) throw new Error(`Expected 10 Atlas demonstratives, found ${atlasDemoCount}.`);
 if (demoSection.includes('assets/capas/')) throw new Error('Demonstratives must not include bonus covers.');
 if (!demoSection.includes('Um pouquinho do que te aguarda no nosso Atlas.')) {
@@ -83,7 +83,7 @@ for (const word of ['Observe', 'Encontre', 'Converse']) {
   if (!html.includes(word)) throw new Error(`Missing mechanism word: ${word}`);
 }
 const mechanismSection = html.match(/<section id="mecanismo"[\s\S]*?<\/section>/)?.[0] ?? '';
-for (const image of ['etapa-01-escolha-projetar-imprimir.png', 'etapa-02-observe.png', 'etapa-03-encontre.png', 'etapa-04-converse.png']) {
+for (const image of ['etapa-01-escolha-projetar-imprimir.webp', 'etapa-02-observe.webp', 'etapa-03-encontre.webp', 'etapa-04-converse.webp']) {
   const relativePath = `assets/mecanismo/${image}`;
   if (!mechanismSection.includes(relativePath)) throw new Error(`Missing visual mechanism stage: ${image}`);
   if (!fs.existsSync(new URL(`../dist/${relativePath}`, import.meta.url))) throw new Error(`Missing visual mechanism asset: ${image}`);
@@ -116,13 +116,18 @@ if (!styles.includes('#quem-somos .about-copy>span:before') || !styles.includes(
   throw new Error('Quem somos needs the editorial emblem, CTA and framed-video treatment.');
 }
 const proofSection = html.match(/<section id="provas"[\s\S]*?<\/section>/)?.[0] ?? '';
-const proofCount = (proofSection.match(/assets\/provas\/prova-social-\d+\.(?:jfif|png)/g) ?? []).length;
+const proofCount = (proofSection.match(/assets\/provas\/prova-social-\d+\.webp/g) ?? []).length;
 if (proofCount !== 8) throw new Error(`Expected 8 real social proof images, found ${proofCount}.`);
 if (!proofSection.includes('class="proof-track loop-track" data-loop')) {
   throw new Error('Social proof must use a continuous proof carousel.');
 }
 
 const content = fs.readFileSync(new URL('../dist/content.js', import.meta.url), 'utf8');
+
+const pageMedia = `${html}\n${content}`;
+if (/assets\/(?:atlas|capas|mecanismo|mockups|provas)\/[^"'\s]+\.(?:png|jpe?g|jfif)/i.test(pageMedia)) {
+  throw new Error('All page imagery must use WebP delivery; only video posters may remain JPEG.');
+}
 
 if (!content.includes('https://www.clarity.ms/tag/z8iv0uc7cl')) {
   throw new Error('The Atlas Clarity project tag must be present for heatmaps and session recordings.');
@@ -193,7 +198,7 @@ if (!styles.includes('.offer-cover-wrap') || !content.includes("mockup.className
 if (!styles.includes('.collection-cards img{height:142px') || !styles.includes('box-shadow:0 5px 12px #57371544')) {
   throw new Error('Collection covers need detailed visual polish without changing the card layout.');
 }
-if (!content.includes("product-showcase") || !content.includes('03-bonus-guia-lider-narradora.png') || !content.includes("'Atlas Vivo da Bíblia', 'main'")) {
+if (!content.includes("product-showcase") || !content.includes('03-bonus-guia-lider-narradora.webp') || !content.includes("'Atlas Vivo da Bíblia', 'main'")) {
   throw new Error('Product section needs a distinct commercial collection mockup.');
 }
 if (!styles.includes('#quem-somos .about-video{width:min(100%,390px);aspect-ratio:9/16}') || !styles.includes('.product-book--main')) {
@@ -211,7 +216,7 @@ if (!styles.includes('.product-showcase:before{content:""') || !styles.includes(
 if (!styles.includes('.collection-offer .offer-list{display:grid') || !styles.includes('.collection-offer .offer-check:before') || !styles.includes('.collection-offer .value-anchor{')) {
   throw new Error('Collection checkout needs visible premium bonus cards and a commercial price anchor.');
 }
-if (!content.includes('02-bonus-30-aberturas.png') || !content.includes('BÔNUS 1')) {
+if (!content.includes('02-bonus-30-aberturas.webp') || !content.includes('BÔNUS 1')) {
   throw new Error('Collection offer needs the first bonus cover and label.');
 }
 if (!content.includes('offer-urgency')) {
@@ -231,7 +236,7 @@ if (!content.includes("!image.matches('#hero .hero-raster img')")) {
 if (!content.includes("rasterImage.loading = 'lazy'")) {
   throw new Error('The below-the-fold collection offer art must be lazy-loaded.');
 }
-if (!content.includes("inclusions.innerHTML = '<img src=\"assets/capas/01-atlas-vivo-da-biblia.png\" alt=\"Capa do Atlas Vivo da Bíblia\" loading=\"lazy\"")) {
+if (!content.includes("inclusions.innerHTML = '<img src=\"assets/capas/01-atlas-vivo-da-biblia.webp\" alt=\"Capa do Atlas Vivo da Bíblia\" loading=\"lazy\"")) {
   throw new Error('The below-the-fold Atlas inclusion cover must be lazy-loaded.');
 }
 if (!content.includes('class=\"product-book product-book--${role}\" src=\"${src}\" alt=\"${alt}\" loading=\"lazy\"')) {
