@@ -23,7 +23,7 @@
   if (hero && !hero.querySelector('.hero-raster')) {
     const heroRaster = document.createElement('div');
     heroRaster.className = 'hero-raster';
-    heroRaster.innerHTML = '<img src="assets/mockups/hero-atlas-raster.png" alt="Atlas Vivo da Bíblia: 150 mapas visuais para aulas de catequese" width="1091" height="1474"><a class="hero-raster__video-cta" href="#vsl" aria-label="Assistir ao vídeo de apresentação do Atlas"></a>';
+    heroRaster.innerHTML = '<img src="assets/mockups/hero-atlas-raster.webp" alt="Atlas Vivo da Bíblia: 150 mapas visuais para aulas de catequese" width="1091" height="1442" fetchpriority="high"><a class="hero-raster__video-cta" href="#vsl" aria-label="Assistir ao vídeo de apresentação do Atlas"></a>';
     hero.append(heroRaster);
     hero.classList.add('hero--raster');
   }

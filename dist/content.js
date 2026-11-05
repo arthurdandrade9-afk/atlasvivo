@@ -16,6 +16,22 @@ window.ATLAS_CONTENT = {
   }
 };
 
+const heroPreload = document.createElement('link');
+heroPreload.rel = 'preload';
+heroPreload.as = 'image';
+heroPreload.href = 'assets/mockups/hero-atlas-raster.webp';
+heroPreload.fetchPriority = 'high';
+document.head.append(heroPreload);
+document.querySelectorAll('img').forEach((image) => {
+  image.decoding = 'async';
+  if (image.closest('#hero')) {
+    image.loading = 'lazy';
+    image.fetchPriority = 'low';
+  } else {
+    image.loading = 'lazy';
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   // Microsoft Clarity — project "atlas". The tag is async and does not block the landing page.
   if (!document.querySelector('script[data-clarity-project="z8iv0uc7cl"]')) {
@@ -54,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hero && !hero.querySelector('.hero-raster')) {
     const heroRaster = document.createElement('div');
     heroRaster.className = 'hero-raster';
-    heroRaster.innerHTML = '<img src="assets/mockups/hero-atlas-raster.png" alt="Atlas Vivo da Bíblia: 150 mapas visuais para aulas de catequese" width="1091" height="1474"><a class="hero-raster__video-cta" href="#vsl" aria-label="Assistir ao vídeo de apresentação do Atlas"></a>';
+    heroRaster.innerHTML = '<img src="assets/mockups/hero-atlas-raster.webp" alt="Atlas Vivo da Bíblia: 150 mapas visuais para aulas de catequese" width="1091" height="1442" fetchpriority="high"><a class="hero-raster__video-cta" href="#vsl" aria-label="Assistir ao vídeo de apresentação do Atlas"></a>';
     hero.append(heroRaster);
     hero.classList.add('hero--raster');
   }

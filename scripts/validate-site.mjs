@@ -213,6 +213,10 @@ if (!content.includes('offer-urgency')) {
 if (!content.includes('value-anchor__price') || !styles.includes('.value-anchor__price b{white-space:nowrap')) {
   throw new Error('Collection price anchor must keep the promotional price legible on a single line.');
 }
+
+if (!content.includes('hero-atlas-raster.webp') || !content.includes("image.loading = 'lazy'")) {
+  throw new Error('Hero delivery and below-the-fold image loading safeguards must remain enabled.');
+}
 if (!content.includes("styles.css?draft=collection-3d-v20")) {
   throw new Error('Local collection preview must request the current draft stylesheet.');
 }
